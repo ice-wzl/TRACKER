@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker Database</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Two columns */
+            gap: 5px; /* Space between the input fields */
+            max-width: 100%; /* Optional: max width for better layout */
+            margin: 0 auto; /* Center the form */
+        }
+        label {
+            grid-column: span 1;
+        }
+
+        input {
+            margin: 10px;
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+        input[type="submit"] {
+            background-color: #6200ee;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #3700b3;
+        }
+        table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ffffff;
+            text-align: left;
+        }
+        th {
+            background-color: #1e1e1e;
+        }
+        nav {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 5px 10px;
+            background-color: #6200ee;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: #3700b3;
+        }
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Send behind all content */
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="{{ url_for('index') }}">Get Deployment Details</a>
+    <a href="{{ url_for('add_deployment') }}">Add Deployment</a>
+    <a href="{{ url_for('add_location') }}">Add Location</a>
+    <a href="{{ url_for('add_implant') }}">Add Implant</a>
+    <a href="{{ url_for('add_campaign') }}">Add Campaign</a>
+    <a href="{{ url_for('add_target') }}">Add Target</a>
+    <a href="{{ url_for('search_campaign') }}">Search Campaign Notes</a>
+</nav>
+<h1>Add Implant Deployment</h1>
+<div id="particles-js"></div>
+
+
+<form method="POST">
+    <label for="install_date"><strong>Install Date:</strong></label>
+    <input type="text" id="install_date" name="install_date" placeholder="2000-01-01" required>
+    
+    <label for="kill_date"><strong>Kill Date:</strong></label>
+    <input type="text" id="kill_date" name="kill_date" placeholder="2000-02-01" required>
+    
+    <label for="persistant"><strong>Persistant (Enter 1 for True, 0 for False):</strong></label>
+    <input type="text" id="persistant" name="persistant" placeholder="1 | 0" required>
+    
+    <label for="poc"><strong>Point of Contact:</strong></label>
+    <input type="text" id="poc" name="poc" placeholder="Point of Contact" required>
+
+    <label for="ip_address"><strong>IP Address:</strong></label>
+    <input type="text" id="ip_address" name="ip_address" placeholder="IP Address" required>
+
+    <label for="implant_port"><strong>Implant Port:</strong></label>
+    <input type="text" id="implant_port" name="implant_port" placeholder="Implant Port" required>
+
+    <label for="target_name"><strong>Target Name:</strong></label>
+    <input type="text" id="target_name" name="target_name" placeholder="Target Name" required>
+
+    <label for="campaign_id"><strong>Campaign ID:</strong></label>
+    <input type="text" id="campaign_id" name="campaign_id" placeholder="Campaign ID" required>
+    
+    <label for="location_id"><strong>Location ID:</strong></label>
+    <input type="text" id="location_id" name="location_id" placeholder="Location ID" required>
+    
+    <label for="implant_type_id"><strong>Implant ID:</strong></label>
+    <input type="text" id="implant_type_id" name="implant_type_id" placeholder="Implant ID" required>
+    
+    <input type="submit" value="Add Entry">
+</form>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<ul>
+    {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<h2>Deployed Implants</h2>
+<table>
+    <tr>
+        <th>Install Date</th>
+        <th>Kill Date</th>
+        <th>IP Address</th>
+        <th>Implant Port</th>
+        <th>Target ID</th>
+        <th>Location</th>
+        <th>Country</th>
+        <th>Implant Name</th>
+        <th>Implant Version</th>
+    </tr>
+    {% for entry in entries %}
+    <tr>
+        <td>{{ entry.install_date }}</td>
+        <td>{{ entry.kill_date }}</td>
+        <td>{{ entry.ip_address }}</td>
+        <td>{{ entry.implant_port }}</td>
+        <td>{{ entry.target_name }}</td>
+        <td>{{ entry.location }}</td>
+        <td>{{ entry.country }}</td>
+        <td>{{ entry.implant_name }}</td>
+        <td>{{ entry.implant_version }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- Bootstrap JS and jQuery -->
+<script defer src="{{ url_for('static', filename='lib/particles.js') }}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    fetch("{{ url_for('static', filename='lib/particlesjs-config.json') }}")
+      .then(response => response.json())
+      .then(config => {
+        particlesJS('particles-js', config);
+      })
+      .catch(error => console.error('Error loading particles config:', error));
+  });
+</script>
+<script src="{{ url_for('static', filename='lib/jquery-3.7.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/bootstrap.bundle.min.js') }}"></script>
+
+
+</body>
+</html>

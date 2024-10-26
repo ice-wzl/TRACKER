@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker Database</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input {
+            margin: 10px;
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+        input[type="submit"] {
+            background-color: #6200ee;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #3700b3;
+        }
+        table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ffffff;
+            text-align: left;
+        }
+        th {
+            background-color: #1e1e1e;
+        }
+        nav {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 5px 10px;
+            background-color: #6200ee;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: #3700b3;
+        }
+        #particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Send behind all content */
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="{{ url_for('index') }}">Get Deployment Details</a>
+    <a href="{{ url_for('add_deployment') }}">Add Deployment</a>
+    <a href="{{ url_for('add_location') }}">Add Location</a>
+    <a href="{{ url_for('add_implant') }}">Add Implant</a>
+    <a href="{{ url_for('add_campaign') }}">Add Campaign</a>
+    <a href="{{ url_for('add_target') }}">Add Target</a>
+    <a href="{{ url_for('search_campaign') }}">Search Campaign Notes</a>
+</nav>
+<h1>Implant Tracker</h1>
+<div id="particles-js"></div>
+
+<table>
+    <tr>
+        <th>Install Date</th>
+        <th>Kill Date</th>
+        <th>IP Address</th>
+        <th>Implant Port</th>
+        <th>Entity ID</th>
+        <th>Location</th>
+        <th>Country</th>
+        <th>Implant Name</th>
+        <th>Implant Version</th>
+    </tr>
+    {% for entry in entries %}
+    <tr>
+        <td>{{ entry.install_date }}</td>
+        <td>{{ entry.kill_date }}</td>
+        <td>{{ entry.ip_address }}</td>
+        <td>{{ entry.implant_port }}</td>
+        <td>{{ entry.entity_name }}</td>
+        <td>{{ entry.location }}</td>
+        <td>{{ entry.country }}</td>
+        <td>{{ entry.implant_name }}</td>
+        <td>{{ entry.implant_version }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- JS for Bootstrap or additional libraries -->
+
+<script defer src="{{ url_for('static', filename='lib/particles.js') }}"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    fetch("{{ url_for('static', filename='lib/particlesjs-config.json') }}")
+      .then(response => response.json())
+      .then(config => {
+        particlesJS('particles-js', config);
+      })
+      .catch(error => console.error('Error loading particles config:', error));
+  });
+</script>
+<script src="{{ url_for('static', filename='lib/jquery-3.7.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
