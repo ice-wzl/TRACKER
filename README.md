@@ -80,8 +80,9 @@ python3 app.py
 
 ## FAQ
 1. Why did you not pull some of the Javascript libs from a cdn and instead include them in the repo?
-- I wanted to be able to run this application on a host that cannot reach the internet. This would have caused all the libs to fail to load. Many Red Teams might want to host this application on a host that is not internet accessible.
-
+  - I wanted to be able to run this application on a host that cannot reach the internet. This would have caused all the libs to fail to load. Many Red Teams might want to host this application on a host that is not internet accessible.
+3. Where did the name come from
+  - TRACK KIT should make your red team engagements faster and more organized. Much like a track kit makes you faster on the track. 
 ## Bugs?
 - If you find a bug, please open an Issue or submit a PR, happy to accept PRs!
 
