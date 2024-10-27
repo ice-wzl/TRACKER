@@ -55,21 +55,21 @@ source permissions.sql
 ````
 python3 app.py
 ````
+## How to use this application
+- Start by adding a location that your Red Team will be operating in. Input the State and the Country.
+![Screenshot from 2024-10-26 20-01-02](https://github.com/user-attachments/assets/05bdb090-5055-4ef2-b39e-8eb3502ecf5d)
+- Then create a Campaign
+![Screenshot from 2024-10-26 20-02-08](https://github.com/user-attachments/assets/22292c36-f978-414d-bbf7-983372bbfc6f)
+- After creating a campaign, you can now identify target hosts and add them as targets tying them to a campaign. This will keep your targets organized and all linked to your specific Red Team campaign.
+- You can either name hosts in the target network numberically or by hostname, either is possible.
+![Screenshot from 2024-10-26 20-07-17](https://github.com/user-attachments/assets/facf6f90-20df-4a70-82ae-78734618043b)
+
+
 ## How to add notes 
 - Simply place the notes file in the output directory and run `python3 -t TESTCAMPAIGN1 insert_target_notes.py`
 - `-t TESTCAMPAIGN1` is the Target Name. It is the host the RedTeam attempted to gain access to and the notes should be stored for later use in the database.
 
-## Errors 
-````
-AttributeError: 'AddLocationDAL' object has no attribute 'cursor'
-[!] Error: Authentication plugin 'caching_sha2_password' is not supported
-````
-- Fix with connecting to your database and running 
-````
-USER TRACKER;
-ALTER USER 'admin_user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'admin1234';
-FLUSH PRIVILEGES;
-````
+
 
 ## TO DO 
 - add mac address and hostname to the add targets
