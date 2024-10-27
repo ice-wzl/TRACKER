@@ -72,6 +72,7 @@ python3 app.py
 - For example you can add `Sliver v5.4` and `Meterpreter 6.3`. This will assign the implant an implant ID which you can use in the `add_deployment` page.
 ## Add Deployment
 - This page will allow you to track deployed implants in the Red Team engangement. You will need your Campaign ID, Target ID, and Implant ID. These can be gathered from the respective pages. You can further annotate any automatic kill-date along with the Red Team operator that installed the implant.
+![Screenshot from 2024-10-26 20-12-20](https://github.com/user-attachments/assets/5b3c76ae-5d00-461d-82fd-eb90042cb23e)
 
 ## How to add notes 
 - Simply place the notes file in the output directory and run `python3 -t TESTCAMPAIGN1 insert_target_notes.py`
