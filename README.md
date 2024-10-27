@@ -78,7 +78,12 @@ python3 app.py
 - Simply place the notes file in the output directory and run `python3 -t TESTCAMPAIGN1 insert_target_notes.py`
 - `-t TESTCAMPAIGN1` is the Target Name. It is the host the RedTeam attempted to gain access to and the notes should be stored for later use in the database.
 
+## FAQ
+1. Why did you not pull some of the Javascript libs from a cdn and instead include them in the repo?
+- I wanted to be able to run this application on a host that cannot reach the internet. This would have caused all the libs to fail to load. Many Red Teams might want to host this application on a host that is not internet accessible.
 
+## Bugs?
+- If you find a bug, please open an Issue or submit a PR, happy to accept PRs!
 
 ## TO DO 
 - add mac address and hostname to the add targets
