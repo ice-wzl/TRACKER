@@ -157,8 +157,9 @@ def add_target():
         if form_type == 'add':
             name = request.form.get('name')
             ip_address = request.form.get('ip_address')
+            mac_address = request.form.get('mac_address')
             campaign_id = request.form.get('campaign_id')
-            result = target_bll.add_target(name, ip_address, campaign_id)
+            result = target_bll.add_target(name, ip_address, mac_address, campaign_id)
             if result:
                 flash("Target added successfully!", "success")
             else:

@@ -6,7 +6,7 @@ class GetDeploymentDAL:
     def __init__(self):
         try:
             # Create separate connections for different user roles
-            self.modify_cnx = mysql.connector.connect(
+            self.admin_cnx = mysql.connector.connect(
                 user='admin_user', password='admin1234',
                 host='127.0.0.1', database='TRACKER', port=3306
             )
@@ -20,7 +20,7 @@ class GetDeploymentDAL:
 
     def get_deployment(self):
         """Fetch implant deployment details via stored procedure."""
-        cursor = self.modify_cnx.cursor(dictionary=True)
+        cursor = self.admin_cnx.cursor(dictionary=True)
         query = "CALL GetDeploymentDetails();"
         cursor.execute(query)
         results = cursor.fetchall()

@@ -86,6 +86,7 @@ BEGIN
         T.id,
         T.name,
         T.ip_address,
+        T.mac_address,
         GetCampaignName(T.campaign_id) as campaign_name
     FROM 
         TARGET T;
@@ -244,26 +245,22 @@ DROP PROCEDURE IF EXISTS AddTarget$$
 CREATE PROCEDURE AddTarget(
 	IN p_name VARCHAR(100),
     IN p_ip_address VARCHAR(100),
+    IN p_mac_address VARCHAR(100),
     IN p_campaign_id INT
 )
 BEGIN
 	INSERT INTO TARGET (
 		name,
         ip_address,
+        mac_address,
         campaign_id
     )
 	VALUES (
 		p_name,
         p_ip_address,
+        p_mac_address,
         p_campaign_id
 	);
 END$$
 
 DELIMITER ;
-
-
-
-
--- -SELECT GetProjectName(1) AS ProjectName;
--- -CALL GetDeploymentDetails();
--- -Call AddDeployment('2011-02-01', '2012-02-01', True, 'Jack Taubl', 1, 2);

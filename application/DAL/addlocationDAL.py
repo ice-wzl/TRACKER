@@ -4,6 +4,7 @@ from mysql.connector import errorcode
 
 class AddLocationDAL:
     def __init__(self):
+        self.admin_cnx = None
         try:
             self.admin_cnx = mysql.connector.connect(
                 user='admin_user', password='admin1234',
@@ -12,7 +13,7 @@ class AddLocationDAL:
             self.cursor = self.admin_cnx.cursor(dictionary=True)
         except mysql.connector.Error as e:
             print(f"[!] Error: {e}")
-            self.cursor = None  # Prevent AttributeError if connection fails
+            self.cursor = None  
 
 
     def add_location(self, state, country):
@@ -44,5 +45,5 @@ class AddLocationDAL:
         """Close the database connection."""
         if hasattr(self, 'cursor') and self.cursor:
             self.cursor.close()
-        if self.admin_cnx.is_connected():
+        if self.admin_cnx and self.admin_cnx.is_connected():  
             self.admin_cnx.close()

@@ -10,9 +10,9 @@ class AddTarget:
     def __init__(self):
         self.AddTargetDAL = AddTargetDAL()
 
-    def add_target(self, name, ip_address, campaign_id):
+    def add_target(self, name, ip_address, mac_address, campaign_id):
         """Add a new target."""
-        return self.AddTargetDAL.add_target(name, ip_address, campaign_id)
+        return self.AddTargetDAL.add_target(name, ip_address, mac_address, campaign_id)
 
     def get_all(self):
         """Fetch all targets."""

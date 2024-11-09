@@ -27,7 +27,8 @@ DROP TABLE IF EXISTS TARGET;
 CREATE TABLE IF NOT EXISTS TARGET (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
-    ip_address VARCHAR(50) NOT NULL,
+    ip_address VARCHAR(50),
+    mac_address VARCHAR(50),
     campaign_id INT,
     FOREIGN KEY (campaign_id) REFERENCES CAMPAIGN(id)
         ON DELETE CASCADE ON UPDATE CASCADE
@@ -76,7 +77,8 @@ CREATE TABLE IF NOT EXISTS DEPLOYMENT (
     kill_date DATE,
     persistant BOOLEAN,
     point_of_contact VARCHAR(100),
-    ip_address VARCHAR(50) NOT NULL,
+    ip_address VARCHAR(50),
+    -- -mac_address VARCHAR(50),
     implant_port INT NOT NULL,
     target_id INT NOT NULL,
     campaign_id INT NOT NULL,

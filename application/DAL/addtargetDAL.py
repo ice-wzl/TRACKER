@@ -13,9 +13,9 @@ class AddTargetDAL:
             print(f"[!] Error: {e}")
 
 
-    def add_target(self, name, ip_address, campaign_id):
+    def add_target(self, name, ip_address, mac_address, campaign_id):
         try:
-            args = (name, ip_address, campaign_id)
+            args = (name, ip_address, mac_address, campaign_id)
             self.cursor.callproc('AddTarget', args)
             self.admin_cnx.commit()
             return True

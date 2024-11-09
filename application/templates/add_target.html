@@ -95,7 +95,10 @@
     <input type="text" name="name" placeholder="Target Name" required>
 
     <label for="ip_address"><strong>IP Address:</strong></label>
-    <input type="text" name="ip_address" placeholder="IP Address" required>
+    <input type="text" name="ip_address" placeholder="IP Address">
+
+    <label for="mac_address"><strong>MAC Address:</strong></label>
+    <input type="text" name="mac_address" placeholder="MAC Address"
 
     <label for="campaign_id"><strong>Campaign ID:</strong></label>
     <input type="text" name="campaign_id" placeholder="Campaign ID" required>
@@ -133,6 +136,7 @@
                     <th>Target ID</th>
                     <th>Target Name</th>
                     <th>IP Address</th>
+                    <th>MAC Address</th>
                     <th>Campaign Name</th>
                 </tr> 
             </thead>
@@ -142,6 +146,7 @@
                     <td>{{ entry.id }}</td>
                     <td>{{ entry.name }}</td>
                     <td>{{ entry.ip_address }}</td>
+                    <td>{{ entry.mac_address }}</td>
                     <td>{{ entry.campaign_name }}</td>
                 </tr>
                 {% endfor %}
