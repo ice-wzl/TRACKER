@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS TARGETNOTES (
     target_id INT,
     campaign_id INT,
     date_of_note DATE,
-    note TEXT,
+    note LONGTEXT,
     FOREIGN KEY (target_id) REFERENCES TARGET(id)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (campaign_id) REFERENCES CAMPAIGN(id)
