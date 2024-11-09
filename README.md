@@ -19,20 +19,19 @@ pip install --upgrade mysql-connector-python
 ````
 ## Example Systemd service file 
 ````
-/etc/systemd/system/trackit.service
+/etc/systemd/system/tracker.service
 [Unit]
-Description=trackkit
+Description=tracker
 After=network.target
 
 [Service]
 User=www-data
 Group=www-data
-WorkingDirectory=/opt/trackkit/application
-ExecStart=/opt/trackkit/application/venv/bin/python3 /opt/trackkit/application/app.py
+WorkingDirectory=/opt/tracker/application
+ExecStart=/opt/tracker/application/venv/bin/python3 /opt/tracker/application/app.py
 Restart=always
-Environment="PATH=/opt/trackkit/application/venv/bin"
-Environment="VIRTUAL_ENV=/opt/trackkit/application/venv"
-
+Environment="PATH=/opt/tracker/application/venv/bin"
+Environment="VIRTUAL_ENV=/opt/tracker/application/venv"
 
 [Install]
 WantedBy=multi-user.target
