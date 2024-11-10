@@ -15,9 +15,14 @@
             text-align: center;
         }
         form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: grid;
+            grid-template-columns: repeat(8, 1fr); /* Two columns */
+            gap: 5px; /* Space between the input fields */
+            max-width: 100%; /* Optional: max width for better layout */
+            margin: 0 auto; /* Center the form */
+        }
+        label {
+            grid-column: span 1;
         }
         input {
             margin: 10px;
@@ -105,6 +110,8 @@
 
     <input type="submit" value="Add Entity">
 </form>
+
+<h1>Search Target</h1>
 
 <form method="POST" id="search-form">
     <input type="hidden" name="form_type" value="search">
