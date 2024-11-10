@@ -180,10 +180,8 @@ def add_target():
             return jsonify({"error": f"Error retrieving targets: {str(e)}"}), 500
         return render_template('add_target.html', entries=entries)
 
-
-@app.route("/search_campaign", methods=['GET', 'POST'])
-def search_campaign():
-    search_campaign = SearchCampaignNotes()
+'''
+search_campaign = SearchCampaignNotes()
     if request.method == "POST":
         campaign_name = request.form.get('campaign_name')
         results = search_campaign.search_campaign(campaign_name)
@@ -192,6 +190,41 @@ def search_campaign():
         else:
             flash(f"Campaign name: {campaign_name} no results", "error")
         return render_template('search_campaign.html', entries=results)
+    return render_template('search_campaign.html')
+'''
+
+@app.route("/search_campaign", methods=['GET', 'POST'])
+def search_campaign():
+    search_campaign = SearchCampaignNotes()
+
+    if request.method == "POST":
+        form_type = request.form.get('form_type')
+        print(f"[+] form_type: {form_type}")
+        if form_type == "search":
+            campaign_name = request.form.get('campaign_name')
+            results = search_campaign.search_campaign(campaign_name)
+            if results:
+                flash("Campaign search notes below!", "success")
+                
+            else:
+                flash(f"Campaign name: {campaign_name} no results", "error")
+            return render_template('search_campaign.html', entries=results)        
+        
+        elif form_type == "date":
+            date = request.form.get('date')
+            results = search_campaign.search_date(date)
+            if results:
+                flash(f"{date} search notes below!", "success")
+                
+            else:
+                flash(f"{date} no results", "error")
+            return render_template('search_campaign.html', entries=results)
+        
+        else:
+            flash("Invalid query", "error")
+            return render_template('search_campaign.html')
+               
+    #elif request.method == "GET":
     return render_template('search_campaign.html')
 
 

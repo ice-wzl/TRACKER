@@ -43,7 +43,23 @@ class SearchCampaignNotesDAL:
             query = "SELECT * FROM TARGETNOTES WHERE campaign_id = %s"
             cursor.execute(query, (campaign_id,))
             results = cursor.fetchall()
-            print(f"Results: {results}")
+            # print(f"Results: {results}")
+        except mysql.connector.Error as e:
+            print(f"[!] Error: {e}")
+            results = []
+        finally:
+            cursor.close()
+        return results
+    
+    def search_date(self, date):
+        '''
+        Take in the date from the html form and then query across campaigns by date
+        '''
+        try:
+            cursor = self.admin_cnx.cursor(dictionary=True)
+            query = "SELECT * FROM TARGETNOTES WHERE date_of_note = %s"
+            cursor.execute(query, (date,))
+            results = cursor.fetchall()
         except mysql.connector.Error as e:
             print(f"[!] Error: {e}")
             results = []

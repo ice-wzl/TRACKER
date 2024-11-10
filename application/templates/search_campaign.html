@@ -40,11 +40,22 @@
             margin-top: 20px;
             width: 100%;
             border-collapse: collapse;
+            overflow-x: auto;
+            display: block;
         }
+
         th, td {
             padding: 10px;
             border: 1px solid #ffffff;
             text-align: left;
+            white-space: nowrap;
+        }
+
+        td pre {
+            max-width: 100%; 
+            overflow: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
         th {
             background-color: #1e1e1e;
@@ -80,13 +91,22 @@
 
 <h1>Search Campaign Notes</h1>
 
-<form method="POST" id="search-form">
+<form method="POST" id="search-form-campaign">
     <input type="hidden" name="form_type" value="search">
 
     <label for="campaign_name"><strong>Campaign Name:</strong></label>
     <input type="text" name="campaign_name" placeholder="Campaign Name" required>
 
     <input type="submit" value="Search Campaign">
+</form>
+
+<form method="POST" id="search-form-date">
+    <input type="hidden" name="form_type" value="date">
+
+    <label for="date"><strong>Date:</strong></label>
+    <input type="text" name="date" placeholder="Format: 2000-01-01" required>
+
+    <input type="submit" value="Search Date"
 </form>
 
 {% with messages = get_flashed_messages(with_categories=true) %}
@@ -99,7 +119,7 @@
   {% endif %}
 {% endwith %}
 
-<h2>Entities</h2>
+<h2>Notes</h2>
 
 <div class="col-sm-12">
     <div class="panel panel-default">

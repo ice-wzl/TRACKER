@@ -1,20 +1,19 @@
 import argparse
 import os
+import sys
 import mysql.connector
 from mysql.connector import errorcode
 from datetime import datetime
 
 
 def get_note(file_name):
-    pwd = os.getcwd()
-    print(pwd)
-    if os.path.exists(pwd + f"/{file_name}"):
+    if os.path.exists(file_name):
         with open(file_name) as fp:
             file_contents = fp.read()
         return file_contents
     else:
-        return file_name
-
+        print(f"[!] Could not get file contents: {file_name}")
+        sys.exit(1)
 
 def insert_data(target_id, campaign_id, file_name):
    
@@ -35,7 +34,7 @@ def insert_data(target_id, campaign_id, file_name):
 
         # SQL INSERT query
         query = """
-        INSERT INTO ENTITYNOTES (target_id, campaign_id, date_of_note, note) 
+        INSERT INTO TARGETNOTES (target_id, campaign_id, date_of_note, note) 
         VALUES (%s, %s, %s, %s)
         """
         

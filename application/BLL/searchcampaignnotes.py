@@ -14,8 +14,12 @@ class SearchCampaignNotes:
         self.SearchCampaignNotesDAL = SearchCampaignNotesDAL()
     
     def search_campaign(self, campaign_name):
-        """Search for campaign for target notes"""
+        """Search camapaign for target notes"""
         return self.SearchCampaignNotesDAL.search_campaign(campaign_name)
+    
+    def search_date(self, date):
+        """Search notes by date of operation"""
+        return self.SearchCampaignNotesDAL.search_date(date)
 
     def close(self):
         """Close the DAL connection."""

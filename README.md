@@ -86,8 +86,7 @@ python3 app.py
 - If you find a bug, please open an Issue or submit a PR, happy to accept PRs!
 
 ## TO DO 
-- add mac address and hostname to the add targets
 - add ability to modify targets after creation, should be able to add data to blank data fields 
-- add ability to search for notes on target id to not pull the whole campaign 
+- add ability to search for notes on date to not pull the whole campaign 
 - add ability to modify any data after processing except notes!!! important notes are not allowed to be changed
 - change search by project in notes to each off entity, once notes are pushed it becomes too much data
