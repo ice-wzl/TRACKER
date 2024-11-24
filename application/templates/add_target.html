@@ -108,7 +108,7 @@
     <label for="campaign_id"><strong>Campaign ID:</strong></label>
     <input type="text" name="campaign_id" placeholder="Campaign ID" required>
 
-    <input type="submit" value="Add Entity">
+    <input type="submit" value="Add Target">
 </form>
 
 <h1>Search Target</h1>
@@ -120,6 +120,25 @@
     <input type="text" name="target_name" placeholder="Target Name" required>
 
     <input type="submit" value="Search Target">
+</form>
+
+<h1>Update Target</h1>
+
+<form method="POST" id="update-form">
+    <input type="hidden" name="form_type" value="update">
+    <label for="name"><strong>Target Name:</strong></label>
+    <input type="text" name="name" placeholder="Target Name" required>
+
+    <label for="ip_address"><strong>IP Address:</strong></label>
+    <input type="text" name="ip_address" placeholder="IP Address">
+
+    <label for="mac_address"><strong>MAC Address:</strong></label>
+    <input type="text" name="mac_address" placeholder="MAC Address"
+
+    <label for="campaign_id"><strong>Campaign ID:</strong></label>
+    <input type="text" name="campaign_id" placeholder="Campaign ID" required>
+
+    <input type="submit" value="Add Entity">
 </form>
 
 {% with messages = get_flashed_messages(with_categories=true) %}

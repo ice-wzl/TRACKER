@@ -173,6 +173,17 @@ def add_target():
             else:
                 flash(f"Failed to find any entity {target_name}", "error")
             return render_template('add_target.html', entries=result)
+        elif form_type == 'update':
+            name = request.form.get('name')
+            ip_address = request.form.get('ip_address')
+            mac_address = request.form.get('mac_address')
+            campaign_id = request.form.get('campaign_id')
+            result = target_bll.update_target(name, ip_address, mac_address, campaign_id)
+            if result:
+                flash("Target updated successfully!", "success")
+            else:
+                flash("Failed to update target", "error")
+            return redirect(url_for('add_target'))
     elif request.method == "GET":       
         try:
             entries = target_bll.get_all()

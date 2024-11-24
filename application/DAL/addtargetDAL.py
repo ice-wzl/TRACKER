@@ -48,6 +48,25 @@ class AddTargetDAL:
         except mysql.connector.Error as e:
             print(f"[!] Error: {e}")
             return []
+        
+
+    def update_target(self, name, ip_address, mac_address, campaign_id):
+        """
+        Update an existing target in the TARGET table.
+        """
+        try:
+            query = """
+                UPDATE TARGET 
+                SET ip_address = %s, mac_address = %s, campaign_id = %s 
+                WHERE name = %s
+            """
+            values = (ip_address, mac_address, campaign_id, name)
+            self.cursor.execute(query, values)
+            self.admin_cnx.commit()  # Commit the transaction
+            return True
+        except mysql.connector.Error as e:
+            print(f"[!] Error in update_target: {e}")
+            return False
 
 
     def close(self):

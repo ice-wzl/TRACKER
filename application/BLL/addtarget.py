@@ -21,6 +21,10 @@ class AddTarget:
     def search_target(self, name):
         """Search for target/s"""
         return self.AddTargetDAL.search_target(name)
+    
+    def update_target(self, name, ip_address, mac_address, campaign_id):
+        """Update a target."""
+        return self.AddTargetDAL.update_target(name, ip_address, mac_address, campaign_id)
 
     def close(self):
         """Close the DAL connection."""
