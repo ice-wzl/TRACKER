@@ -86,5 +86,6 @@ python3 app.py
 - If you find a bug, please open an Issue or submit a PR, happy to accept PRs!
 
 ## TO DO 
-- add ability to modify any data after processing except notes!!! important notes are not allowed to be changed
-- change search by project in notes to each off entity, once notes are pushed it becomes too much data
+- add ability to modify any data after processing except notes. important notes are not allowed to be changed
+- fix css from overflowing in notes
+- have notes search start collapsed, too much data
