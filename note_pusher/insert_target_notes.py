@@ -61,8 +61,8 @@ if __name__ == "__main__":
         
     parser = argparse.ArgumentParser()
     parser.add_argument("-f", "--file", help="The file to push to the database", required=True, dest="file_name")
-    parser.add_argument("-e", "--target", help="The target id of the target", required=True, dest="target")
-    parser.add_argument("-p", "--campaign", help="The campaign id of the target", required=True, dest="campaign")
+    parser.add_argument("-t", "--target", help="The target id of the target", required=True, dest="target")
+    parser.add_argument("-c", "--campaign", help="The campaign id of the target", required=True, dest="campaign")
     args = parser.parse_args()
     
     campaign = args.campaign
