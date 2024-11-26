@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tracker Database</title>
     <style>
+        * {
+             box-sizing: border-box;
+        }
         body {
             font-family: Arial, sans-serif;
             background-color: #121212;
@@ -38,25 +41,36 @@
         }
         table {
             margin-top: 20px;
-            width: 100%;
+            width: 100%; /* Ensures the table spans the full width of its container */
             border-collapse: collapse;
-            overflow-x: auto;
-            display: block;
+            table-layout: fixed; /* Ensures all columns have a fixed width */
         }
 
         th, td {
             padding: 10px;
             border: 1px solid #ffffff;
             text-align: left;
-            white-space: nowrap;
+            overflow: hidden; /* Prevents content overflow */
+            text-overflow: hidden; /* Adds ellipsis for clipped content if needed */
+            white-space: normal; /* Allows wrapping */
         }
 
         td pre {
-            max-width: 100%; 
-            overflow: auto;
-            white-space: pre-wrap;
-            word-wrap: break-word;
+            white-space: pre-wrap; /* Wraps long text */
+            word-wrap: break-word; /* Breaks long words to fit */
+            max-width: 100%; /* Caps the width of the content to the cell's width */
+            overflow: hidden; /* Prevents content from spilling out */
         }
+        th:nth-child(1), td:nth-child(1), /* "Note ID" */
+        th:nth-child(2), td:nth-child(2), /* "Target ID" */
+        th:nth-child(3), td:nth-child(3) { /* "Date" */
+            width: 50px; /* Narrow width for short content */
+        }
+
+        th:nth-child(4), td:nth-child(4) { /* "Target Note" */
+            width: auto; /* Let this column take up remaining space */
+        }
+
         th {
             background-color: #1e1e1e;
         }
@@ -123,7 +137,7 @@
 
 <div class="col-sm-12">
     <div class="panel panel-default">
-        <div class="panel-heading"></div>
+        <div class="table-container"></div>
         <table class="table table-responsive table-hover">
             <thead>
                 <tr>
@@ -152,3 +166,4 @@
 
 </body>
 </html>
+
