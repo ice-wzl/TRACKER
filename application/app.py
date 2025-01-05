@@ -6,7 +6,6 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 from DAL.addcampaignDAL import *
 from DAL.addimplantDAL import *
-from DAL.searchcampaignnotesDAL import *
 from DAL.addlocationDAL import *
 from DAL.addtargetDAL import *
 from DAL.adddeploymentDAL import *
@@ -14,7 +13,6 @@ from DAL.getdeploymentDAL import *
 
 from BLL.addcampaign import *
 from BLL.addimplant import *
-from BLL.searchcampaignnotes import *
 from BLL.addlocation import *
 from BLL.addtarget import *
 from BLL.adddeployment import *
@@ -190,54 +188,7 @@ def add_target():
         except Exception as e:
             return jsonify({"error": f"Error retrieving targets: {str(e)}"}), 500
         return render_template('add_target.html', entries=entries)
-
-'''
-search_campaign = SearchCampaignNotes()
-    if request.method == "POST":
-        campaign_name = request.form.get('campaign_name')
-        results = search_campaign.search_campaign(campaign_name)
-        if results:
-            flash("Campaign search notes below!", "success")
-        else:
-            flash(f"Campaign name: {campaign_name} no results", "error")
-        return render_template('search_campaign.html', entries=results)
-    return render_template('search_campaign.html')
-'''
-
-@app.route("/search_campaign", methods=['GET', 'POST'])
-def search_campaign():
-    search_campaign = SearchCampaignNotes()
-
-    if request.method == "POST":
-        form_type = request.form.get('form_type')
-        print(f"[+] form_type: {form_type}")
-        if form_type == "search":
-            campaign_name = request.form.get('campaign_name')
-            results = search_campaign.search_campaign(campaign_name)
-            if results:
-                flash("Campaign search notes below!", "success")
-                
-            else:
-                flash(f"Campaign name: {campaign_name} no results", "error")
-            return render_template('search_campaign.html', entries=results)        
-        
-        elif form_type == "date":
-            date = request.form.get('date')
-            results = search_campaign.search_date(date)
-            if results:
-                flash(f"{date} search notes below!", "success")
-                
-            else:
-                flash(f"{date} no results", "error")
-            return render_template('search_campaign.html', entries=results)
-        
-        else:
-            flash("Invalid query", "error")
-            return render_template('search_campaign.html')
-               
-    #elif request.method == "GET":
-    return render_template('search_campaign.html')
-
+    
 
 @app.teardown_appcontext
 def close_connection(exception):

@@ -17,6 +17,25 @@ pip3 install -r requirements.txt
 pip3 install --upgrade Flask Werkzeug
 pip install --upgrade mysql-connector-python
 ````
+## Database Setup
+- Install mysql database 
+````
+sudo apt install mysql-server
+````
+- If youre using socket authentication connect with `sudo mysql`
+- Connect to your database `mysql -u root -p`
+- Run the files in order listed below 
+````
+source users.sql
+source DDL.sql
+source procedure_functions.sql
+source permissions.sql
+````
+## Run the application 
+- Once your database is set up you can `cd application/` and run the application with 
+````
+python3 app.py
+````
 ## Example Systemd service file 
 ````
 /etc/systemd/system/tracker.service
@@ -35,24 +54,6 @@ Environment="VIRTUAL_ENV=/opt/tracker/application/venv"
 
 [Install]
 WantedBy=multi-user.target
-````
-## Database Setup
-- Install mysql database 
-````
-sudo apt install mysql-server
-````
-- Connect to your database `mysql -u root -p`
-- Run the files in order listed below 
-````
-source users.sql
-source ddl.sql
-source function_procedures.sql
-source permissions.sql
-````
-## Run the application 
-- Once your database is set up you can `cd application/` and run the application with 
-````
-python3 app.py
 ````
 ## How to use this application
 ### Add Location
@@ -73,15 +74,12 @@ python3 app.py
 - This page will allow you to track deployed implants in the Red Team engangement. You will need your Campaign ID, Target ID, and Implant ID. These can be gathered from the respective pages. You can further annotate any automatic kill-date along with the Red Team operator that installed the implant.
 ![Screenshot from 2024-10-26 20-12-20](https://github.com/user-attachments/assets/5b3c76ae-5d00-461d-82fd-eb90042cb23e)
 
-## How to add notes 
-- Simply place the notes file in the output directory and run `python3 -t TESTCAMPAIGN1 insert_target_notes.py`
-- `-t TESTCAMPAIGN1` is the Target Name. It is the host the RedTeam attempted to gain access to and the notes should be stored for later use in the database.
 
 ## FAQ
 1. Why did you not pull some of the Javascript libs from a cdn and instead include them in the repo?
   - I wanted to be able to run this application on a host that cannot reach the internet. This would have caused all the libs to fail to load. Many Red Teams might want to host this application on a host that is not internet accessible.
 3. Where did the name come from
-  - TRACK KIT should make your red team engagements faster and more organized. Much like a track kit makes you faster on the track. 
+  - TRACKER should make your red team engagements faster and more organized.
 ## Bugs?
 - If you find a bug, please open an Issue or submit a PR, happy to accept PRs!
 
