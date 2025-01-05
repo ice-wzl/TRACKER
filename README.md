@@ -65,7 +65,7 @@ WantedBy=multi-user.target
 ### Add Targets
 - After creating a campaign, you can now identify target hosts and add them as targets tying them to a campaign. This will keep your targets organized and all linked to your specific Red Team campaign.
 - You can either name hosts in the target network numberically or by hostname, either is possible.
-![Screenshot from 2024-10-26 20-07-17](https://github.com/user-attachments/assets/facf6f90-20df-4a70-82ae-78734618043b)
+![image](https://github.com/user-attachments/assets/77d9d831-3372-4854-badb-5c4f54435af3)
 ## Add Implants
 - You can add implants that your Red Team is using and track their version
 - You will need to have implants added before you create and implant deployment on a target.
