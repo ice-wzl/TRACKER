@@ -1,0 +1,13 @@
+[Unit]
+Description=tracker
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/TRACKER/application
+ExecStart=/opt/TRACKER/application/start.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
